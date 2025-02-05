@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{ user.username }}</h1> 
+
+{% if user.profile.profile_picture %}
+    <img src="{{ user.profile.profile_picture.url }}" 
+         alt="Profile Picture" 
+         style="max-width: 180px;">
+{% else %}
+    <p>No picture available.</p>
+{% endif %}
+
+{% if user.profile.bio %}
+    <p>{{ user.profile.bio }}</p>
+{% else %}
+    <p>No bio available.</p>
+
+{% endif %}    
+
+<a href="{% url 'profile-edit' %}">Edit Profile</a> <br/>
+
+{% endblock %}
