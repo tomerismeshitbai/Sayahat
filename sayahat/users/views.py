@@ -13,12 +13,13 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import RegisterSerializer
 from rest_framework.views import APIView
+from .permissions import IsOwnerOrAdmin
 
 #drf
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
