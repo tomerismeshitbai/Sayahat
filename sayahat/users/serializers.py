@@ -23,7 +23,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         phone_number = validated_data.pop('phone_number')  
         validated_data.pop('password2')  
         email = validated_data['email']
-        username = email.split('@')[0]  
+        username = email  
         first_name = validated_data['first_name']
         last_name = validated_data['last_name']
         user = User.objects.create_user(username=username, email=email,first_name = first_name,last_name= last_name, password=validated_data['password'])
