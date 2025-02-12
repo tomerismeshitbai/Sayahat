@@ -14,6 +14,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import RegisterSerializer
 from rest_framework.views import APIView
 from .permissions import IsOwnerOrAdmin
+from rest_framework.permissions import IsAuthenticated
 
 #drf
 class RegisterView(generics.CreateAPIView):
