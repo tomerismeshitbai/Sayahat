@@ -22,13 +22,14 @@ class RegisterView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
-        user = User.objects.get(username=response.data['username'])
+        user = User.objects.get(email=response.data['email'])
         refresh = RefreshToken.for_user(user)
         return Response({
             "user": response.data,
             "refresh": str(refresh),
             "access": str(refresh.access_token)
         })
+
         
 class LogoutView(APIView):
     def post(self, request):
