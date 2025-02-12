@@ -13,14 +13,15 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import RegisterSerializer
 from rest_framework.views import APIView
-from .permissions import IsOwnerOrAdmin
+from .permissions import IsOwnerOrAdmin 
 from rest_framework.permissions import IsAuthenticated
+
 
 #drf
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
+    permission_classes = [permissions.AllowAny]
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
@@ -41,6 +42,7 @@ class LogoutView(APIView):
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
 
 
 
