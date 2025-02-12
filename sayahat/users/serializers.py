@@ -3,7 +3,6 @@ from .models import Profile
 from django.contrib.auth.models import User
 
 class RegisterSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(required=True) 
     first_name = serializers.CharField(required=True)  
     last_name = serializers.CharField(required=True)  
     phone_number = serializers.CharField(required=True, max_length=15)  
@@ -12,7 +11,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'phone_number', 'password', 'password2']
+        fields = [ 'first_name', 'last_name','email', 'phone_number', 'password', 'password2']
 
     def validate(self, data):
         if data['password'] != data['password2']:
@@ -32,9 +31,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username', read_only=True)  
+    first_name = serializers.CharField(source='user.first_name', read_only=True)
+    last_name = serializers.CharField(source='user.last_name', read_only=True)
     email = serializers.EmailField(source='user.email', read_only=True)
 
     class Meta:
         model = Profile
-        fields = ['id', 'user', 'email', 'bio', 'profile_picture', 'phone_number']
+        fields = ['id', 'user', 'first_name', 'last_name', 'email', 'bio', 'profile_picture', 'phone_number']

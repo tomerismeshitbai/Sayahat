@@ -31,16 +31,8 @@ class RegisterView(generics.CreateAPIView):
         })
         
 class LogoutView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
     def post(self, request):
-        try:
-            refresh_token = request.data["refresh"]
-            token = RefreshToken(refresh_token)
-            token.blacklist() 
-            return Response({"message": "Successfully logged out"}, status=200)
-        except Exception as e:
-            return Response({"error": "Invalid refresh token"}, status=400)
+        return Response({"message": "Successfully logged out"}, status=200)
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
