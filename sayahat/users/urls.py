@@ -7,10 +7,10 @@ router = DefaultRouter()
 router.register(r'profiles', ProfileViewSet) 
 
 urlpatterns = [
-    path('', Home.as_view(), name = "home"),
-    path('register/', UserRegister.as_view(), name = 'register'),
-    path('profile/<int:pk>', profile , name='profile'),
-    path('profile/edit/', EditProfileView.as_view(), name = 'profile-edit'),
+    # path('', Home.as_view(), name = "home"),
+    # path('register/', UserRegister.as_view(), name = 'register'),
+    # path('profile/<int:pk>', profile , name='profile'),
+    # path('profile/edit/', EditProfileView.as_view(), name = 'profile-edit'),
     
     path('api/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
