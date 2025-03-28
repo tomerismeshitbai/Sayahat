@@ -18,6 +18,11 @@ from rest_framework.permissions import IsAuthenticated
 
 
 #drf
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
+
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
@@ -39,10 +44,7 @@ class LogoutView(APIView):
         return Response({"message": "Successfully logged out"}, status=200)
 
 
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
+
 
 
 

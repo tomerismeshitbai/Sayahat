@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'users',
     'corsheaders',
     'rest_framework',
     'drf_spectacular',
     'rest_framework_simplejwt',
+    'events',
 ]
 
 MIDDLEWARE = [
@@ -167,3 +169,4 @@ LOGOUT_REDIRECT_URL = 'home'
 
 
 GDAL_LIBRARY_PATH = 'C:/OSGeo4W/bin/gdal310'
+GEOS_LIBRARY_PATH = "C:/OSGeo4W/bin/geos_c.dll"
